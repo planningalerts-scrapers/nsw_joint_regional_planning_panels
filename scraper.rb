@@ -1,3 +1,4 @@
+require 'scraperwiki'
 require 'mechanize'
 
 def string_to_column_name(text)
