@@ -67,7 +67,7 @@ failure_count = 0
 
 while true do
   begin
-    ScraperWiki::save_var :starting_id, jrpp_id
+    ScraperWiki::save_var "starting_id", jrpp_id
     ScraperWiki::save_sqlite [:jrpp_id], get_record_for_id(jrpp_id)
 
     # If we've got this far the last ID successfully saved
