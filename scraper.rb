@@ -61,7 +61,7 @@ def get_record_for_id(id)
   record
 end
 
-jrpp_id = (ScraperWiki::get_var(:starting_id).nil? ? 1 : ScraperWiki::get_var(:starting_id))
+jrpp_id = (ScraperWiki::get_var("starting_id").nil? ? 1 : ScraperWiki::get_var("starting_id"))
 first_failure_id = nil
 failure_count = 0
 
