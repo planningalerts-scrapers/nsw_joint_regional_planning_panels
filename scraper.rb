@@ -55,6 +55,10 @@ def get_record_for_id(id)
       feild_name = 'date_received'
       field_value = Date.parse(field_value)
     end
+    # the sqlite_magic gem does not support quoting field names - so we have to workaround that here
+    # It does mean that there will be duplicate fields from the old data that was created on Scraperwiki
+    # (which does quote field names)
+    feild_name = feild_name.gsub(/[^a-zA-Z_]/, "_")
 
     record[feild_name] = field_value
   end
