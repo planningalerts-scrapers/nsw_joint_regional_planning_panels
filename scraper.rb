@@ -47,9 +47,9 @@ def get_record_for_id(id)
     when 'exhibition_start_date'
       feild_name = 'on_notice_from'
       field_value = Date.parse(field_value)
-    when 'jrpp_ref_no'
+    when 'panel_reference'
       feild_name = 'council_reference'
-    when 'property_address'
+    when 'address/location'
       feild_name = 'address'
     when 'date_da_lodged_to_council'
       feild_name = 'date_received'
