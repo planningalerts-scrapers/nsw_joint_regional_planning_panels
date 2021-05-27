@@ -14,7 +14,9 @@ def page(agent, page)
   url = "https://www.planningportal.nsw.gov.au/planning-panel?field_status_value=2&page=#{page}"
 
   page = agent.get(url)
-  urls = page.at(".page__content .grid__row").element_children.map do |application|
+  block = page.at(".page__content .grid__row")
+  return 0 if block.nil?
+  urls = block.element_children.map do |application|
     (page.uri + application.at('a')["href"]).to_s
   end
 
