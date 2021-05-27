@@ -1,5 +1,6 @@
 require "mechanize"
 require "active_support/core_ext/string/filters"
+require "scraperwiki"
 
 # Gets one page of applications of those currently under assessment
 # page 0 is the first page
@@ -40,7 +41,8 @@ page = 0
 loop do
   puts "Getting page #{page}..."
   count = page(agent, page) do |record|
-    pp record
+    puts "Saving #{record['council_reference']}..."
+    ScraperWiki.save_sqlite(["council_reference"], record)
   end
   page += 1
   break unless count > 0
