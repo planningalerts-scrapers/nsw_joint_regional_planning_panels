@@ -26,7 +26,7 @@ def page(agent, page)
       "description" => page.at(".field-field-project-description").inner_text.squish,
       "info_url" => url,
       "date_scraped" => Date.today.to_s,
-      "date_received" => fields["Referral date"]
+      "date_received" => Date.strptime(fields["Referral date"], "%d/%m/%Y").to_s
     )
   end
 
