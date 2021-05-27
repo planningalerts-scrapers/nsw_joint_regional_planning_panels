@@ -2,6 +2,12 @@ require "mechanize"
 require "active_support/core_ext/string/filters"
 require "scraperwiki"
 
+def convert_date(s)
+  Date.strptime(s, "%d/%m/%Y").to_s
+rescue ArgumentError
+  nil
+end
+
 # Gets one page of applications of those currently under assessment
 # page 0 is the first page
 def page(agent, page)
@@ -27,7 +33,7 @@ def page(agent, page)
       "description" => page.at(".field-field-project-description").inner_text.squish,
       "info_url" => url,
       "date_scraped" => Date.today.to_s,
-      "date_received" => Date.strptime(fields["Referral date"], "%d/%m/%Y").to_s
+      "date_received" => convert_date(fields["Referral date"])
     )
   end
 
