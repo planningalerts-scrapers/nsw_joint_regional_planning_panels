@@ -1,8 +1,10 @@
 require "mechanize"
 require "active_support/core_ext/string/filters"
 
-def page(agent)
-  url = "https://www.planningportal.nsw.gov.au/planning-panel"
+# Gets one page of applications of those currently under assessment
+# page 0 is the first page
+def page(agent, page)
+  url = "https://www.planningportal.nsw.gov.au/planning-panel?field_status_value=2&page=#{page}"
 
   page = agent.get(url)
   urls = page.at(".page__content .grid__row").element_children.map do |application|
@@ -27,9 +29,19 @@ def page(agent)
       "date_received" => fields["Referral date"]
     )
   end
+
+  # Return number of applications found
+  urls.count
 end
 
 agent = Mechanize.new
-page(agent) do |record|
-  pp record
+
+page = 0
+loop do
+  puts "Getting page #{page}..."
+  count = page(agent, page) do |record|
+    pp record
+  end
+  page += 1
+  break unless count > 0
 end
