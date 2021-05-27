@@ -22,7 +22,7 @@ def page(agent, page)
     fields = Hash[v]
 
     yield(
-      "council_reference" => fields["DA number"],
+      "council_reference" => fields["Planning panel reference number"],
       "address" => fields["Project Address"] + ", NSW",
       "description" => page.at(".field-field-project-description").inner_text.squish,
       "info_url" => url,
