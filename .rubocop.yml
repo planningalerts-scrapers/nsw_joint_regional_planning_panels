@@ -1,0 +1,16 @@
+# Minimal config matching the conventions used across planningalerts-scrapers
+# repos (e.g. multiple_civica).
+
+Layout/LineLength:
+  Max: 120
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+  ConsistentQuotesInMultiline: true
+
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"
+
+Metrics/MethodLength:
+  Max: 30
