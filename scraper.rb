@@ -14,8 +14,8 @@ require "scraperwiki"
 class Scraper
   PAGE_URL = "https://www.planningportal.nsw.gov.au/planning-panel?field_status_value=2&page=%d"
 
-  def self.run(&block)
-    new.run(&block)
+  def self.run(&)
+    new.run(&)
   end
 
   def run(&block)
@@ -76,8 +76,11 @@ class Scraper
 end
 
 if __FILE__ == $PROGRAM_NAME
+  count = 0
   Scraper.run do |record|
     puts "Saving #{record['council_reference']}..."
     ScraperWiki.save_sqlite(["council_reference"], record)
+    count += 1
   end
+  puts "Finished - added #{count} records."
 end
